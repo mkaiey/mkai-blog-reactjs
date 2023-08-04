@@ -4,10 +4,10 @@ MERN stack Blog app using Tailwind CSS, tiptap editor, etc..
 # environtments
 before start you must add .env file on root backend folder
 
-PORT = 5000
-DB_URI = input your mongodb database here
-JWT_SECRET = input your random secret here
-NODE_ENV = development
+# PORT = 5000
+# DB_URI = input your mongodb database here
+# JWT_SECRET = input your random secret here
+# NODE_ENV = development
 
 # install dependencies
 - on backend folder type: npm install
