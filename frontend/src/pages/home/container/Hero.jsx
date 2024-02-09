@@ -47,7 +47,7 @@ const Hero = () => {
           </ul>
         </div>
       </div>
-      <div className="hidden lg:block lg:1/2">
+      <div className="lg:1/2 hidden lg:block">
         <img
           className="ml-5"
           src={images.HeroImage}

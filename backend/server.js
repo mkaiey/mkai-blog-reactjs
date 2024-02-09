@@ -17,10 +17,6 @@ import postCategoriesRoutes from "./routes/postCategoriesRoutes";
 dotenv.config();
 connectDB();
 const app = express();
-<<<<<<< HEAD
-=======
-app.use(cors({ credentials: true, origin: ["https://mkaiey-blog.vercel.app"] }));
->>>>>>> 1a9306b5d8e639dc3821947d1fb9775ee9d43d74
 app.use(express.json());
 app.use(cors({ credentials: true, origin: ["http://localhost:3000"] }));
 
