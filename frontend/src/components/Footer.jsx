@@ -92,7 +92,7 @@ const Footer = () => {
             className="mx-auto brightness-0 invert md:mx-0"
           />
           <p className="mt-4 text-center text-sm text-dark-light md:text-left md:text-base lg:text-sm">
-            Build a modern and creative website with mkailand
+            Build a modern and creative website with crealand
           </p>
           <ul className="mt-5 flex items-center justify-center space-x-4 text-gray-300 md:justify-start">
             <li>

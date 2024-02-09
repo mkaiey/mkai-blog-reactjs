@@ -96,7 +96,7 @@ const CommentsContainer = ({
         formSubmitHanlder={(value) => addCommentHandler(value)}
         loading={isLoadingNewComment}
       />
-      <div className="space-y-4 mt-8">
+      <div className="mt-8 space-y-4">
         {comments.map((comment) => (
           <Comment
             key={comment._id}

@@ -1,13 +1,15 @@
-# mkai-blog-reactjs
-MERN stack Blog app using Tailwind CSS, tiptap editor, etc..
+## Built Fullstack Blog App.
+MERN stack Blog app using Tailwind CSS, tiptap editor, mongodb etc..
 
 # environtments
-before start you must add .env file on root backend folder
+before start you must add .env file on root backend folder (change filename .env.example to .env)
 
-# PORT = 5000
-# DB_URI = input your mongodb database here
-# JWT_SECRET = input your random secret here
-# NODE_ENV = development
+```js
+PORT = 5000
+DB_URI = input your mongodb database here
+JWT_SECRET = input your random secret here
+NODE_ENV = development
+```
 
 # install dependencies
 - on backend folder type: npm install

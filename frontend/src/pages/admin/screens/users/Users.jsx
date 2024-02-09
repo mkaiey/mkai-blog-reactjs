@@ -1,17 +1,15 @@
-import { images, stables } from "../../../../constants";
-import { deletePost, getAllPosts } from "../../../../services/index/posts";
-// import Pagination from "../../../../components/Pagination";
-// import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import React from "react";
 import { useDataTable } from "../../../../hooks/useDataTable";
+import { deleteUser, getAllUsers } from "../../../../services/index/users";
 import DataTable from "../../components/DataTable";
+import { images, stables } from "../../../../constants";
 
-const ManagePosts = () => {
+const Users = () => {
   const {
     userState,
     currentPage,
     searchKeyword,
-    data: postsData,
+    data: usersData,
     isLoading,
     isFetching,
     isLoadingDeleteData,
@@ -21,11 +19,12 @@ const ManagePosts = () => {
     deleteDataHandler,
     setCurrentPage,
   } = useDataTable({
-    dataQueryFn: () => getAllPosts(searchKeyword, currentPage),
-    dataQueryKey: "posts",
-    deleteDataMessage: "Post is deleted",
+    dataQueryFn: () =>
+      getAllUsers(userState.userInfo.token, searchKeyword, currentPage),
+    dataQueryKey: "users",
+    deleteDataMessage: "User is deleted",
     mutateDeleteFn: ({ slug, token }) => {
-      return deletePost({
+      return deleteUser({
         slug,
         token,
       });
@@ -34,62 +33,56 @@ const ManagePosts = () => {
 
   return (
     <DataTable
-      pageTitle="Manage Posts"
-      dataListName="Posts"
-      searchInputPlaceHolder="Post title..."
+      pageTitle="Manage Users"
+      dataListName="Users"
+      searchInputPlaceHolder="User's email..."
       searchKeywordOnSubmitHandler={submitSearchKeywordHandler}
       searchKeywordOnChangeHandler={searchKeywordHandler}
       searchKeyword={searchKeyword}
-      tableHeaderTitleList={["Title", "Category", "Created At", "Tags", ""]}
+      tableHeaderTitleList={[
+        "Name",
+        "Email",
+        "Created At",
+        "is Verified",
+        "is Admin",
+        "",
+      ]}
       isLoading={isLoading}
       isFetching={isFetching}
-      data={postsData?.data}
+      data={usersData?.data}
       setCurrentPage={setCurrentPage}
       currentPage={currentPage}
-      headers={postsData?.headers}
+      headers={usersData?.headers}
       userState={userState}
     >
-      {postsData?.data.map((post) => (
-        <tr>
+      {usersData?.data.map((user) => (
+        <tr key={user._id}>
           <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <a href="/" className="relative block">
                   <img
                     src={
-                      post?.photo
-                        ? stables.UPLOAD_FOLDER_BASE_URL + post?.photo
-                        : images.samplePostImage
+                      user?.avatar
+                        ? stables.UPLOAD_FOLDER_BASE_URL + user?.avatar
+                        : images.userImage
                     }
-                    alt={post.title}
+                    alt={user.name}
                     className="mx-auto aspect-square w-10 rounded-lg object-cover"
                   />
                 </a>
               </div>
               <div className="ml-3">
-                <p className="whitespace-no-wrap text-gray-900">{post.title}</p>
+                <p className="whitespace-no-wrap text-gray-900">{user.name}</p>
               </div>
             </div>
           </td>
           <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-            <p className="whitespace-no-wrap text-gray-900">
-              {post.categories.length > 0
-                ? post.categories
-                    .slice(0, 3)
-                    .map(
-                      (category, index) =>
-                        `${category.title}${
-                          post.categories.slice(0, 3).length === index + 1
-                            ? ""
-                            : ", "
-                        }`
-                    )
-                : "Uncategorized"}
-            </p>
+            <p className="whitespace-no-wrap text-gray-900">{user.email}</p>
           </td>
           <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
             <p className="whitespace-no-wrap text-gray-900">
-              {new Date(post.createdAt).toLocaleDateString("en-US", {
+              {new Date(user.createdAt).toLocaleDateString("en-US", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
@@ -97,16 +90,14 @@ const ManagePosts = () => {
             </p>
           </td>
           <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-            <div className="flex gap-x-2">
-              {post.tags.length > 0
-                ? post.tags.map((tag, index) => (
-                    <p>
-                      {tag}
-                      {post.tags.length - 1 !== index && ","}
-                    </p>
-                  ))
-                : "No tags"}
-            </div>
+            <p className="whitespace-no-wrap text-gray-900">
+              {user.verified ? "✅" : "❌"}
+            </p>
+          </td>
+          <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+            <p className="whitespace-no-wrap text-gray-900">
+              {user.admin ? "✅" : "❌"}
+            </p>
           </td>
           <td className="space-x-5 border-b border-gray-200 bg-white px-5 py-5 text-sm">
             <button
@@ -115,19 +106,13 @@ const ManagePosts = () => {
               className="text-red-600 hover:text-red-900 disabled:cursor-not-allowed disabled:opacity-70"
               onClick={() => {
                 deleteDataHandler({
-                  slug: post?.slug,
+                  slug: user?._id,
                   token: userState.userInfo.token,
                 });
               }}
             >
               Delete
             </button>
-            <Link
-              to={`/admin/posts/manage/edit/${post?.slug}`}
-              className="text-green-600 hover:text-green-900"
-            >
-              Edit
-            </Link>
           </td>
         </tr>
       ))}
@@ -135,4 +120,4 @@ const ManagePosts = () => {
   );
 };
 
-export default ManagePosts;
+export default Users;

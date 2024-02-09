@@ -47,11 +47,11 @@ const Hero = () => {
           </ul>
         </div>
       </div>
-      <div className="lg:1/2 hidden lg:block">
+      <div className="hidden lg:block lg:1/2">
         <img
-          className="px-5 py-5"
+          className="ml-5"
           src={images.HeroImage}
-          style={{ height: 400, width: 600 }}
+          style={{ height: 450, width: 600 }}
           alt="wellcome to mkai-blog"
         />
       </div>

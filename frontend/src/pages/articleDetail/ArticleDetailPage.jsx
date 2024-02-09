@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -62,7 +61,6 @@ const ArticleDetailPage = () => {
             <div className="mt-4 flex gap-2">
               {data?.categories.map((category) => (
                 <Link
-                  key={category.name}
                   to={`/blog?category=${category.name}`}
                   className="inline-block font-roboto text-sm text-primary md:text-base"
                 >

@@ -76,13 +76,13 @@ const ProfilePage = () => {
   return (
     <MainLayout>
       <section className="container mx-auto px-5 py-10">
-        <div className="w-full max-w-sm mx-auto">
+        <div className="mx-auto w-full max-w-sm">
           <ProfilePicture avatar={profileData?.avatar} />
           <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="flex flex-col mb-6 w-full">
+            <div className="mb-6 flex w-full flex-col">
               <label
                 htmlFor="name"
-                className="text-[#5a7184] font-semibold block"
+                className="block font-semibold text-[#5a7184]"
               >
                 Name
               </label>
@@ -100,20 +100,20 @@ const ProfilePage = () => {
                   },
                 })}
                 placeholder="Enter name"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
+                className={`mt-3 block rounded-lg border px-5 py-4 font-semibold text-dark-hard outline-none placeholder:text-[#959ead] ${
                   errors.name ? "border-red-500" : "border-[#c3cad9]"
                 }`}
               />
               {errors.name?.message && (
-                <p className="text-red-500 text-xs mt-1">
+                <p className="mt-1 text-xs text-red-500">
                   {errors.name?.message}
                 </p>
               )}
             </div>
-            <div className="flex flex-col mb-6 w-full">
+            <div className="mb-6 flex w-full flex-col">
               <label
                 htmlFor="email"
-                className="text-[#5a7184] font-semibold block"
+                className="block font-semibold text-[#5a7184]"
               >
                 Email
               </label>
@@ -132,20 +132,20 @@ const ProfilePage = () => {
                   },
                 })}
                 placeholder="Enter email"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
+                className={`mt-3 block rounded-lg border px-5 py-4 font-semibold text-dark-hard outline-none placeholder:text-[#959ead] ${
                   errors.email ? "border-red-500" : "border-[#c3cad9]"
                 }`}
               />
               {errors.email?.message && (
-                <p className="text-red-500 text-xs mt-1">
+                <p className="mt-1 text-xs text-red-500">
                   {errors.email?.message}
                 </p>
               )}
             </div>
-            <div className="flex flex-col mb-6 w-full">
+            <div className="mb-6 flex w-full flex-col">
               <label
                 htmlFor="password"
-                className="text-[#5a7184] font-semibold block"
+                className="block font-semibold text-[#5a7184]"
               >
                 New Password (optional)
               </label>
@@ -154,12 +154,12 @@ const ProfilePage = () => {
                 id="password"
                 {...register("password")}
                 placeholder="Enter new password"
-                className={`placeholder:text-[#959ead] text-dark-hard mt-3 rounded-lg px-5 py-4 font-semibold block outline-none border ${
+                className={`mt-3 block rounded-lg border px-5 py-4 font-semibold text-dark-hard outline-none placeholder:text-[#959ead] ${
                   errors.password ? "border-red-500" : "border-[#c3cad9]"
                 }`}
               />
               {errors.password?.message && (
-                <p className="text-red-500 text-xs mt-1">
+                <p className="mt-1 text-xs text-red-500">
                   {errors.password?.message}
                 </p>
               )}
@@ -167,7 +167,7 @@ const ProfilePage = () => {
             <button
               type="submit"
               disabled={!isValid || profileIsLoading || updateProfileIsLoading}
-              className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="mb-6 w-full rounded-lg bg-primary px-8 py-4 text-lg font-bold text-white disabled:cursor-not-allowed disabled:opacity-70"
             >
               Update
             </button>

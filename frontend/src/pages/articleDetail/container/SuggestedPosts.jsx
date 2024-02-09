@@ -17,7 +17,7 @@ const SuggestedPosts = ({ className, header, posts = [], tags }) => {
             className="flex flex-nowrap items-center space-x-3"
           >
             <img
-              className="aspect-square object-cover rounded-lg w-1/5"
+              className="aspect-square w-1/5 rounded-lg object-cover"
               src={
                 item?.photo
                   ? stables.UPLOAD_FOLDER_BASE_URL + item?.photo

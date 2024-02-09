@@ -18,7 +18,7 @@ import {
 } from "../../../../utils/multiSelectTagUtils";
 
 const promiseOptions = async (inputValue) => {
-  const categoriesData = await getAllCategories();
+  const { data: categoriesData } = await getAllCategories();
   return filterCategories(inputValue, categoriesData);
 };
 
@@ -31,9 +31,9 @@ const EditPost = () => {
   const [photo, setPhoto] = useState(null);
   const [body, setBody] = useState(null);
   const [categories, setCategories] = useState(null);
+  const [title, setTitle] = useState("");
   const [tags, setTags] = useState(null);
   const [postSlug, setPostSlug] = useState(slug);
-  const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
 
   const { data, isLoading, isError } = useQuery({
@@ -166,7 +166,6 @@ const EditPost = () => {
                 </Link>
               ))}
             </div>
-
             <div className="d-form-control w-full">
               <label className="d-label" htmlFor="title">
                 <span className="d-label-text">Title</span>
@@ -174,43 +173,40 @@ const EditPost = () => {
               <input
                 id="title"
                 value={title}
-                placeholder="title"
                 className="d-input-bordered d-input border-slate-300 font-roboto text-xl font-medium text-dark-hard !outline-slate-300"
                 onChange={(e) => setTitle(e.target.value)}
+                placeholder="title"
               />
             </div>
-
             <div className="d-form-control w-full">
               <label className="d-label" htmlFor="caption">
-                <span className="d-label-text">Caption</span>
+                <span className="d-label-text">caption</span>
               </label>
               <input
                 id="caption"
                 value={caption}
-                placeholder="caption"
                 className="d-input-bordered d-input border-slate-300 font-roboto text-xl font-medium text-dark-hard !outline-slate-300"
                 onChange={(e) => setCaption(e.target.value)}
+                placeholder="caption"
               />
             </div>
-
             <div className="d-form-control w-full">
               <label className="d-label" htmlFor="slug">
-                <span className="d-label-text">Slug</span>
+                <span className="d-label-text">slug</span>
               </label>
               <input
                 id="slug"
                 value={postSlug}
-                placeholder="post slug"
                 className="d-input-bordered d-input border-slate-300 font-roboto text-xl font-medium text-dark-hard !outline-slate-300"
                 onChange={(e) =>
                   setPostSlug(e.target.value.replace(/\s+/g, "-").toLowerCase())
                 }
+                placeholder="post slug"
               />
             </div>
-
             <div className="mb-5 mt-2">
               <label className="d-label">
-                <span className="d-label-text">Categories</span>
+                <span className="d-label-text">categories</span>
               </label>
               {isPostDataLoaded && (
                 <MultiSelectTagDropdown
@@ -222,14 +218,12 @@ const EditPost = () => {
                 />
               )}
             </div>
-
             <div className="mb-5 mt-2">
               <label className="d-label">
-                <span className="d-label-text">Tags</span>
+                <span className="d-label-text">tags</span>
               </label>
               {isPostDataLoaded && (
                 <CreatableSelect
-                  loadOptions={promiseOptions}
                   defaultValue={data.tags.map((tag) => ({
                     value: tag,
                     label: tag,
